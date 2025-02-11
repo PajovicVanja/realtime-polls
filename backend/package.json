@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "test": "cross-env NODE_ENV=test JWT_SECRET=580c933ed180fc74bb0d2c856e5d04dbecb62dffe90d0d2f2b135c549ba4b138f87a27e5e3c34d32ca7704ed073f19909ec4e04405a85c98c78d0490f1846b8bcec11f1fc85e4398a5786cbd497ff30c02f4a05485e05bc75bcbb267471b3cff221c207f5d82255b8eb7a245ada7b49cc801ad8b05e65761f1a089052467bf400ac73b32fb3a06421200ba9e176bb4490953af6a91b53b824ade6aac60d699a9207ec059aadfdeed199a4ef9c55c4ca6a42a28cea1c6d6e57901948b82c9952b6ed7c834be153b8439838a8347564f60aaaf3ebbd524ac42194e824f96f28726e4a103ebee68008f6e62b45ab196eaf484bd0ec254edc95adecc33d09e2dedb6 mocha --file tests/00-setup.ts -r ts-node/register tests/**/*.test.ts --timeout 10000"  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/chai": "^5.0.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.1",
+    "@types/supertest": "^6.0.2",
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "mocha": "^11.1.0",
+    "supertest": "^7.0.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.3"
+  }
+}
