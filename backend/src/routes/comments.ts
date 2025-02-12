@@ -9,7 +9,7 @@ const router = Router();
 router.post('/:pollId', verifyToken, async (req: AuthenticatedRequest, res) => {
   try {
     const { pollId } = req.params;
-    const { text } = req.body; // Remove userId from the body; we take it from the token
+    const { text } = req.body;
     const userId = req.user?.id;
     const newComment = new Comment({
       pollId,
@@ -24,11 +24,11 @@ router.post('/:pollId', verifyToken, async (req: AuthenticatedRequest, res) => {
   }
 });
 
-// Retrieve all comments for a poll (public)
+// Retrieve all comments for a poll (public) with populated user details
 router.get('/:pollId', async (req, res) => {
   try {
     const { pollId } = req.params;
-    const comments = await Comment.find({ pollId });
+    const comments = await Comment.find({ pollId }).populate('userId', 'username');
     res.json(comments);
   } catch (error) {
     console.error("Error retrieving comments:", error);

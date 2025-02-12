@@ -8,12 +8,11 @@ describe('Polls API', () => {
   let token: string;
 
   before(() => {
-    // Retrieve the token from global after the setup file has run
     token = (global as any).testUserToken;
     if (!token) {
       throw new Error("Global token not set");
     }
-    console.log('Using token:', token); // Should now print a valid token
+    console.log('Using token:', token); 
   });
 
   it('should create a new poll', async () => {
@@ -70,7 +69,7 @@ describe('Polls API', () => {
     const expiredPollData = {
       title: "Expired Poll",
       options: [{ id: "1", text: "Yes", votes: 0 }],
-      expirationTime: new Date(Date.now() - 3600000).toISOString() // 1 hour ago
+      expirationTime: new Date(Date.now() - 3600000).toISOString() 
     };
 
     const expiredRes = await request(app)

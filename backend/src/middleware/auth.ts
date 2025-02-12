@@ -11,7 +11,6 @@ interface JwtPayload {
   exp: number;
 }
 
-// Extend Express's Request type to include the authenticated user
 export interface AuthenticatedRequest extends Request {
   user?: JwtPayload;
 }

@@ -4,7 +4,6 @@ import request from 'supertest';
 import app from '../src/app';
 
 describe('Users API', () => {
-  // Only run these tests if the global token is not already set
   if (!(global as any).testUserToken) {
     let userId: string;
     let token: string;
@@ -34,7 +33,7 @@ describe('Users API', () => {
 
     it('should log in the user and return a token', async () => {
       const loginData = {
-        email: (global as any).testUserEmail, // or use userEmail from the previous test
+        email: (global as any).testUserEmail, 
         password: password
       };
 

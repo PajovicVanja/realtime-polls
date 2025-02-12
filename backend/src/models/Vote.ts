@@ -4,7 +4,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IVote extends Document {
   pollId: mongoose.Types.ObjectId;
   optionId: string;
-  userId?: mongoose.Types.ObjectId; // Optional for anonymous voting
+  userId?: mongoose.Types.ObjectId; 
   createdAt: Date;
 }
 

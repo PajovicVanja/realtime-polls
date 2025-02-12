@@ -8,14 +8,23 @@ const router = Router();
 // Create a new poll (protected)
 router.post('/', verifyToken, async (req: AuthenticatedRequest, res) => {
   try {
-    // Optionally, you can record the creator's id:
-    // req.body.creator = req.user?.id;
     const newPoll = new Poll(req.body);
     const poll = await newPoll.save();
     return res.status(201).json(poll);
   } catch (error) {
     console.error("Error creating poll:", error);
     return res.status(500).json({ error: "Failed to create poll" });
+  }
+});
+
+// Get all polls (public)
+router.get('/', async (req, res) => {
+  try {
+    const polls = await Poll.find({});
+    return res.json(polls);
+  } catch (error) {
+    console.error("Error retrieving polls:", error);
+    return res.status(500).json({ error: "Error retrieving polls" });
   }
 });
 

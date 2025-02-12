@@ -22,7 +22,7 @@ before(async () => {
     .send({ email: userData.email, password: userData.password })
     .expect(200);
 
-  console.log("Test user token:", res.body.token); // Should print a valid JWT
+  console.log("Test user token:", res.body.token); 
   (global as any).testUserToken = res.body.token;
   (global as any).testUserId = res.body.user._id;
 });

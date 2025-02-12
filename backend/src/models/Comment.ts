@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IComment extends Document {
   pollId: mongoose.Types.ObjectId;
-  userId?: mongoose.Types.ObjectId; // Optional for anonymous comments
+  userId?: mongoose.Types.ObjectId; 
   text: string;
   createdAt: Date;
 }
