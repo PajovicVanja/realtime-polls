@@ -1,7 +1,7 @@
 // src/routes/users.ts
 import { Router } from 'express';
 import User from '../models/User';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { verifyToken, AuthenticatedRequest } from '../middleware/auth';
 
@@ -12,7 +12,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 router.post('/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
     const newUser = new User({
       username,
       email,
@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
     if (!user) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcryptjs.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
@@ -76,7 +76,7 @@ router.put('/profile', verifyToken, async (req: AuthenticatedRequest, res) => {
     if (username) updateData.username = username;
     if (email) updateData.email = email;
     if (password) {
-      updateData.password = await bcrypt.hash(password, 10);
+      updateData.password = await bcryptjs.hash(password, 10);
     }
     const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true }).select('-password');
     return res.json(updatedUser);
